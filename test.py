@@ -1,4 +1,5 @@
-tp = "No scopes selected. Call the set_scopes() function to " \
-                "set scopes"
+import requests as reqs
+import requests_async as requests
 
-print(tp)
+async def a():
+    resp = await requests.get(files={})
