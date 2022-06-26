@@ -15,3 +15,7 @@ asyncio.run(uploadfile1())
 
 # Upload using local file
 # For this example, we're pretending "cat.png" is stored locally.
+async def uploadfile2():
+    await wtp.upload_from_file("cat.png")
+
+asyncio.run(uploadfile2())
