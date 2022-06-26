@@ -18,3 +18,6 @@ class InternalServerError(Exception):
 
 class UnhandledError(Exception):
     pass
+
+class MissingFileType(Exception):
+    pass
