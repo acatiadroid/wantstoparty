@@ -2,3 +2,6 @@ test.py
 **/__pycache__
 venv
 cat.png
+build
+dist
+*.egg-info
