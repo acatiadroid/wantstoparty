@@ -6,10 +6,10 @@ from wantstoparty._async import WantsToParty
 wtp = WantsToParty(api_key="your api key", subdomain="your subdomain")
 
 # Upload using binary data
-html_file = io.BytesIO(b"<h1>Hello world</h1>")
+my_html = io.BytesIO(b"<h1>Hello world</h1>")
 
 async def uploadfile1():
-    await wtp.upload_from_bytes(html_file, "html")
+    await wtp.upload_from_bytes(my_html, "html")
 
 asyncio.run(uploadfile1())
 
