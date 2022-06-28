@@ -22,7 +22,7 @@ class UnhandledError(Exception):
 class MissingFileType(Exception):
     pass
 
-def _handle_errorcode(self, code):
+def _handle_errorcode(code):
         if code == 401:
             raise Unauthorized()
         elif code == 403:
