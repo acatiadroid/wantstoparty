@@ -1,10 +1,11 @@
 from setuptools import find_packages, setup
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 DESCRIPTION = "An API wrapper for the wants-to.party API."
-LONG_DESC = """An API wrapper for the wants-to.party API which provides 
-full API coverage. This wrapper also lets you make API calls asynchronously and
-synchronously"""
+
+long_desc = ""
+with open(".github/README.md", "r") as f:
+    long_desc = f.read()
 
 setup(
     name="wantstoparty",
@@ -12,7 +13,8 @@ setup(
     author="acatiadroid",
     author_email="<acatia@mail.com>",
     description=DESCRIPTION,
-    long_description=LONG_DESC,
+    long_description=long_desc,
+    long_description_content_type="text/markdown",
     packages=find_packages(),
     requires=["aiohttp", "requests"],
     keywords=["python", "api wrapper"],
