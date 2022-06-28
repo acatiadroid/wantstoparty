@@ -14,10 +14,10 @@
 4. Copy the API key in the box above.
 
 ## Examples
-Some examples can be found in the [examples/](examples/) folder.
+Some examples can be found in the [examples/](https://github.com/acatiadroid/py-wants-to-party/tree/main/examples) folder.
 
 ## Contributing
-Contributions are welcome! Check out the [contributing guidelines](CONTRIBUTING.md) beforehand.
+Contributions are welcome! Check out the [contributing guidelines](https://github.com/acatiadroid/py-wants-to-party/blob/main/.github/CONTRIBUTING.md) beforehand.
 
 ## License
-This is licensed under MIT. Read the license [here](LICENSE.txt).
+This is licensed under MIT. Read the license [here](https://github.com/acatiadroid/py-wants-to-party/blob/main/LICENSE.txt).
