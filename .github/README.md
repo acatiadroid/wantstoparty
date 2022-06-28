@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>py-wants-to-party</h1>
+    <h1>wantstoparty</h1>
     <h3>An API wrapper for the <a href="https://wants-to.party">wants-to.party</a> API.</h3>
 </div>
 
