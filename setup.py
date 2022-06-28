@@ -15,11 +15,11 @@ setup(
     description=DESCRIPTION,
     long_description=long_desc,
     long_description_content_type="text/markdown",
-    packages=find_packages(),
+    packages=find_packages(exclude=["docs", "examples", "build", "dist", "*.egg-info"]),
     requires=["aiohttp", "requests"],
     keywords=["python", "api wrapper"],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
