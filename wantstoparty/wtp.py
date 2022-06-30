@@ -50,10 +50,12 @@ class WantsToParty:
             files=file
         )
         
+        payload = resp.json()
+
         if resp.status_code != 200:
-            return _handle_errorcode(resp.status_code)
+            return _handle_errorcode(resp.status_code, payload["error"])
         
-        return resp.json()
+        return payload
     
     def upload_from_bytes(
             self, 

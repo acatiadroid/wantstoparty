@@ -22,16 +22,15 @@ class UnhandledError(Exception):
 class MissingFileType(Exception):
     pass
 
-def _handle_errorcode(code):
+def _handle_errorcode(code, message):
         if code == 401:
-            raise Unauthorized()
+            raise Unauthorized(message)
         elif code == 403:
-            raise Forbidden("Likely caused by being banned or invalid API key.")
+            raise Forbidden(message)
         elif code == 400:
-            raise BadRequest("Either caused by max file size being exceeded (100MB), " \
-                "no file recieved, or other reason.")
+            raise BadRequest(message)
         elif code == 500:
-            raise InternalServerError("An internal server error occured. Try again later.")
+            raise InternalServerError(message)
         else:
-            raise UnhandledError(f"An unhandled error occured. Error code: {code}")
+            raise UnhandledError(message)
             

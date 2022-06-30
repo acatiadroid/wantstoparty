@@ -44,10 +44,12 @@ class WantsToParty:
         
         async with ClientSession(headers=headers) as session:
             async with session.post(self._BASE, data=form) as resp:
+                payload = await resp.json()
+
                 if resp.status != 200:
-                    return _handle_errorcode(resp.status)
-                
-                return await resp.json()
+                    return _handle_errorcode(resp.status, payload["error"])
+
+                return payload
     
     async def upload_from_bytes(
             self, 
