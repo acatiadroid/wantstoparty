@@ -5,7 +5,7 @@ from typing import Union
 
 import requests
 
-from errors import _handle_errorcode
+from .errors import _handle_errorcode
 
 class WantsToParty:
     """The base class used for all synchronous wants-to.party API interactions."""
