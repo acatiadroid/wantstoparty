@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = "0.0.3"
+VERSION = "0.0.4"
 DESCRIPTION = "An API wrapper for the wants-to.party API."
 
 long_desc = ""
