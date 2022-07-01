@@ -1,1 +1,1 @@
-from wtp import *
+from .wtp import *
