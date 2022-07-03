@@ -49,7 +49,7 @@ class WantsToParty:
                 if resp.status != 200:
                     return _handle_errorcode(resp.status, payload["error"])
 
-                return payload
+                return payload["url"]
     
     async def upload_from_bytes(
             self, 
