@@ -42,7 +42,7 @@ class WantsToParty:
         else:
             file_data = open(file, "rb")
             
-            file = {"file": (filename, file_data)}
+            file = {"file": (filename + filetype, file_data)}
 
         resp = requests.post(
             self._BASE,
