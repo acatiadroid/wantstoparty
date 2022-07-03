@@ -1,11 +1,12 @@
 <div align="center">
     <h1>wantstoparty</h1>
     <h3>An API wrapper for the <a href="https://wants-to.party">wants-to.party</a> API.</h3>
+    <img src="https://img.shields.io/pypi/v/wantstoparty.svg">
 </div>
 
 
 ## Getting started
-1. install the package:
+1. Install the package:
     ```
     pip install wantstoparty
     ```
