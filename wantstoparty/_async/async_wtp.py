@@ -28,7 +28,7 @@ class WantsToParty:
             *,
             from_bytes: bool,
             filename: str = None
-        ):
+        ) -> str:
         headers = {"key": self.api_key}
         
         if from_bytes:
@@ -55,7 +55,7 @@ class WantsToParty:
             self, 
             file: io.BufferedIOBase,
             filetype: str
-        ) -> dict:
+        ) -> str:
         """Uploads a file-like object using the raw binary data
         provided.
 
@@ -74,7 +74,7 @@ class WantsToParty:
     async def upload_from_file(
             self,
             file: os.PathLike[str]
-        ):
+        ) -> str:
         """Uploads a local file using the file path provided.
         
         Returns the JSON-formatted response.
