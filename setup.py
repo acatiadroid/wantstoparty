@@ -12,6 +12,7 @@ setup(
     version=VERSION,
     author="acatiadroid",
     author_email="<acatia@mail.com>",
+    url="https://github.com/acatiadroid/wantstoparty",
     description=DESCRIPTION,
     long_description=long_desc,
     long_description_content_type="text/markdown",
