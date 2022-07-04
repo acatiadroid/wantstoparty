@@ -5,7 +5,7 @@
 
 
 ## Getting started
-1. install the package:
+1. Install the package:
     ```
     pip install wantstoparty
     ```
