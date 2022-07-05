@@ -7,7 +7,14 @@ from aiohttp import ClientSession, FormData
 from ..errors import _handle_errorcode
 
 class WantsToParty:
-    """The base class used for all asynchronous wants-to.party API interactions."""
+    """The base class used for all non-blocking wants-to.party API interactions.
+    
+    Keyword arguments
+    -----------
+    api_key - Your API key. This can be found on your dashboard.
+
+    subdomain - Your unique subdomain. This can also be found on your dashboard.
+    """
     def __init__(
             self,
             *,

@@ -8,7 +8,14 @@ import requests
 from .errors import _handle_errorcode
 
 class WantsToParty:
-    """The base class used for all synchronous wants-to.party API interactions."""
+    """The base class used for all wants-to.party API interactions.
+    
+    Keyword arguments
+    -----------
+    api_key - Your API key. This can be found on your dashboard.
+
+    subdomain - Your unique subdomain. This can also be found on your dashboard.
+    """
     def __init__(
             self,
             *,
@@ -79,7 +86,7 @@ class WantsToParty:
     
     def upload_from_file(
             self,
-            file: os.PathLike[str]
+            file: Union[os.PathLike[str], str]
         ) -> str:
         """Uploads a local file using the file path provided.
         
