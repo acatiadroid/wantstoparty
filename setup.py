@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = "0.0.7"
+VERSION = "0.1.0"
 DESCRIPTION = "An API wrapper for the wants-to.party API."
 
 long_desc = ""
@@ -20,7 +20,7 @@ setup(
     install_requires=["aiohttp", "requests"],
     keywords=["python", "api wrapper"],
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
