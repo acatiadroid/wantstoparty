@@ -11,6 +11,5 @@ my_html = io.BytesIO(b"<h1>Hello world</h1>")
 file = wtp.upload_from_bytes(my_html, "html") # filetype must be specified as such data isn't
                                        # provided using BytesIO.
 
-
-# Print the usable URL
-print(file["url"])
+# print the usable URL
+print(file)

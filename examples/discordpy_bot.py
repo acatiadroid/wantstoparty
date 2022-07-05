@@ -14,10 +14,10 @@ async def upload(ctx: commands.Context):
         extension = attachment.filename.split(".")
         extension = extension[len(extension)-1]     # the file extension. I.E., "png"
 
-        bytes = io.BytesIO(await attachment.read()) # store bytes in BytesIO
-        file = await wtp.upload_from_bytes(bytes, extension)
+        file_data = io.BytesIO(await attachment.read()) # store bytes in BytesIO
+        file = await wtp.upload_from_bytes(file_data, extension)
     
-        await ctx.send(f'<{file["url"]}>')
+        await ctx.send(f'<{file}>')
 
 
 bot.run("token")
