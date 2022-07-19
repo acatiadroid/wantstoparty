@@ -82,7 +82,7 @@ class WantsToParty:
         """Uploads a file-like object using the raw binary data
         provided.
 
-        Returns the JSON-formatted response.
+        Returns the URL of the uploaded file.
 
         Attributes
         -----------
@@ -91,6 +91,9 @@ class WantsToParty:
             
         filetype - The file type associated with the file
                    you're uploading. I.E., ".png".
+
+        max_bytes - A maximum number of bytes uploadable. Use
+        the Size class to specify the number of bytes. 
         """
         return self._post_file(file, filetype, from_bytes=True, max_bytes=max_bytes)
     
@@ -102,11 +105,14 @@ class WantsToParty:
         ) -> str:
         """Uploads a local file using the file path provided.
         
-        Returns the JSON-formatted response.
+        Returns the URL of the uploaded file.
         
         Attributes
         -----------
         file - The path to the file stored on your local disk.
+
+        max_bytes - A maximum number of bytes uploadable. Use
+        the Size class to specify the number of bytes. 
         """
         fpath = pathlib.Path(file)
         
