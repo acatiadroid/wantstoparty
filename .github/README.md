@@ -5,8 +5,8 @@
 </div>
 
 ## About
-wantstoparty is a feature rich API wrapper for the wants-to.party API which lets you:
-* Blocking and non-blocking (async) support. [See blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/async_use.py)/[See non-blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/nonasync_use.py).
+`wantstoparty` is a feature rich API wrapper for the wants-to.party API which offers:
+* Blocking and non-blocking (async) support. [See blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/nonasync_use.py)/[See non-blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/async_use.py).
 * Upload files using raw binary data or a local file stored on disk. Look at the examples above.
 * Set a maximum upload file size.
     - This prevents files that exceed your limit being uploaded. [See example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/max_filesize.py).
