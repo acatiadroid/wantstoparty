@@ -28,7 +28,6 @@ class WantsToParty:
         self.subdomain: str = subdomain
         
         self._BASE: str = f"https://{subdomain}.wants-to.party/upload"
-        self._BASE_FILE_URL: str = f"https://{subdomain}.wants-to.party/"
     
     def _post_file(
             self,

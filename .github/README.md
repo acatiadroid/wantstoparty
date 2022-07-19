@@ -4,6 +4,17 @@
     <img src="https://img.shields.io/pypi/v/wantstoparty.svg">
 </div>
 
+## About
+wantstoparty is a feature rich API wrapper for the wants-to.party API which lets you:
+* Blocking and non-blocking (async) support. [See blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/async_use.py)/[See non-blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/nonasync_use.py).
+* Upload files using raw binary data or a local file stored on disk. Look at the examples above.
+* Set a maximum upload file size.
+    - This prevents files that exceed your limit being uploaded. [See example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/max_filesize.py).
+* Check if file types are supported on wants-to.party.
+* User-friendly errors.
+* ...and much more.
+
+**Created by acatia#5378**
 
 ## Getting started
 1. Install the package:
@@ -12,7 +23,16 @@
     ```
 2. Create a [wants-to.party](https://wants-to.party) account.
 3. On your dashboard, click the "View api key" button:
-4. Copy the API key in the box above.
+4. Import the `WantsToParty` class:
+    ```py
+    from wantstoparty import WantsToParty
+
+    # For async use, refer to the examples.
+    wtp = WantsToParty(api_key="api key from dashboard", subdomain="subdomain from dashboard")
+    ```
+
+
+Join the Motion Development server for extra help, [here](https://discord.gg/9x566fY47Z).
 
 ## Examples
 Some examples can be found in the [examples/](https://github.com/acatiadroid/py-wants-to-party/tree/main/examples) folder.
