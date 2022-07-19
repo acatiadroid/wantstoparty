@@ -22,6 +22,9 @@ class UnhandledError(Exception):
 class MissingFileType(Exception):
     pass
 
+class MaxFileSizeExceeded(Exception):
+    pass
+
 def _handle_errorcode(code, message):
         if code == 401:
             raise Unauthorized(message)

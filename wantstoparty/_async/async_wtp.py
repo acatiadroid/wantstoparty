@@ -4,6 +4,7 @@ import pathlib
 from typing import Union
 from aiohttp import ClientSession, FormData
 
+from ..checks import Size
 from ..errors import _handle_errorcode
 
 class WantsToParty:
@@ -30,15 +31,19 @@ class WantsToParty:
     
     async def _post_file(
             self,
-            file: Union[os.PathLike[str], io.BufferedIOBase],
+            file,
             filetype: str,
             *,
             from_bytes: bool,
-            filename: str = None
+            filename: str = None,
+            max_bytes: Size = None
         ) -> str:
         headers = {"key": self.api_key}
         
         if from_bytes:
+            if max_bytes:
+                max_bytes._check_bytes(file.getbuffer().nbytes)
+
             if not filetype.endswith("."):
                 filetype = "." + filetype
 
@@ -46,6 +51,9 @@ class WantsToParty:
             filename = f"file{filetype}"
             form.add_field("file", file.getvalue(), filename=filename)
         else:
+            if max_bytes:
+                max_bytes._check_bytes(os.path.getsize(file))
+
             form = FormData()
             form.add_field("file", open(file, "rb"), filename=filename + filetype)
         
@@ -61,7 +69,9 @@ class WantsToParty:
     async def upload_from_bytes(
             self, 
             file: io.BufferedIOBase,
-            filetype: str
+            filetype: str,
+            *,
+            max_bytes: Size = None
         ) -> str:
         """Uploads a file-like object using the raw binary data
         provided.
@@ -76,11 +86,13 @@ class WantsToParty:
         filetype - The file type associated with the file
                    you're uploading. I.E., ".png".
         """
-        return await self._post_file(file, filetype, from_bytes=True)
+        return await self._post_file(file, filetype, from_bytes=True, max_bytes=max_bytes)
     
     async def upload_from_file(
             self,
-            file: os.PathLike[str]
+            file: str,
+            *,
+            max_bytes: Size = None
         ) -> str:
         """Uploads a local file using the file path provided.
         
@@ -95,4 +107,4 @@ class WantsToParty:
         filename = filedata.stem
         filetype = filedata.suffix
         path = os.path.abspath(file)
-        return await self._post_file(path, filetype, filename=filename, from_bytes=False)
+        return await self._post_file(path, filetype, filename=filename, from_bytes=False, max_bytes=max_bytes)

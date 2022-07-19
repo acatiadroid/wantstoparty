@@ -5,6 +5,7 @@ from typing import Union
 
 import requests
 
+from .checks import Size
 from .errors import _handle_errorcode
 
 class WantsToParty:
@@ -31,15 +32,19 @@ class WantsToParty:
     
     def _post_file(
             self,
-            file: Union[os.PathLike[str], io.BufferedIOBase],
+            file,
             filetype: str,
             *,
             from_bytes: bool,
-            filename: str = None
+            filename: str = None,
+            max_bytes: Size = None
         ):
         headers = {"key": self.api_key}
         
         if from_bytes:
+            if max_bytes:
+                max_bytes._check_bytes(file.getbuffer().nbytes)
+
             if not filetype.endswith("."):
                 filetype = "." + filetype
 
@@ -47,6 +52,9 @@ class WantsToParty:
             
             file = {"file": (filename, file.getvalue())}
         else:
+            if max_bytes:
+                max_bytes._check_bytes(os.path.getsize(file))
+
             file_data = open(file, "rb")
             
             file = {"file": (filename + filetype, file_data)}
@@ -67,7 +75,9 @@ class WantsToParty:
     def upload_from_bytes(
             self, 
             file: io.BufferedIOBase,
-            filetype: str
+            filetype: str,
+            *,
+            max_bytes: Size = None
         ) -> str:
         """Uploads a file-like object using the raw binary data
         provided.
@@ -82,11 +92,13 @@ class WantsToParty:
         filetype - The file type associated with the file
                    you're uploading. I.E., ".png".
         """
-        return self._post_file(file, filetype, from_bytes=True)
+        return self._post_file(file, filetype, from_bytes=True, max_bytes=max_bytes)
     
     def upload_from_file(
             self,
-            file: Union[os.PathLike[str], str]
+            file: str,
+            *,
+            max_bytes: Size = None
         ) -> str:
         """Uploads a local file using the file path provided.
         
@@ -96,10 +108,10 @@ class WantsToParty:
         -----------
         file - The path to the file stored on your local disk.
         """
-        filedata = pathlib.Path(file)
+        fpath = pathlib.Path(file)
         
-        filename = filedata.stem
-        filetype = filedata.suffix
+        filename = fpath.stem
+        filetype = fpath.suffix
         path = os.path.abspath(file)
-        return self._post_file(path, filetype, filename=filename, from_bytes=False)
+        return self._post_file(path, filetype, filename=filename, from_bytes=False, max_bytes=max_bytes)
         
