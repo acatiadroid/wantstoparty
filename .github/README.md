@@ -23,6 +23,9 @@
     ```
 2. Create a [wants-to.party](https://wants-to.party) account.
 3. On your dashboard, click the "View api key" button:
+
+    ![image](https://user-images.githubusercontent.com/69216256/180094711-f3428246-e369-440f-84d7-d9eba7a9d8bc.png)
+
 4. Import the `WantsToParty` class:
     ```py
     from wantstoparty import WantsToParty
