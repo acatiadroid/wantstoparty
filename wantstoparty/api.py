@@ -201,7 +201,6 @@ class AsyncRequest:
             if resp.status != 200:
                 return _handle_errorcode(resp.status, payload["message"])
             
-            print(payload)
             return User(payload)
     
     async def _get_files(data: dict):
