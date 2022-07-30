@@ -195,12 +195,13 @@ class AsyncRequest:
         key = data.get("key")
         headers = {"Authorization": f"User {key}"}
         async with ClientSession(headers=headers) as s:
-            async with s.get(URL("/api/user/files")._assemble_url()) as resp:
+            async with s.get(URL("/api/user")._assemble_url()) as resp:
                 payload = await resp.json()
                 
             if resp.status != 200:
                 return _handle_errorcode(resp.status, payload["message"])
-        
+            
+            print(payload)
             return User(payload)
     
     async def _get_files(data: dict):
