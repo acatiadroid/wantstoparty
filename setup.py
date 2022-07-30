@@ -11,7 +11,7 @@ setup(
     name="wantstoparty",
     version=VERSION,
     author="acatiadroid",
-    license="MIT",
+    license="The MIT License (MIT)",
     author_email="<acatia@mail.com>",
     url="https://github.com/acatiadroid/wantstoparty",
     description=DESCRIPTION,
