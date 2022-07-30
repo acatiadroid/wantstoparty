@@ -5,8 +5,11 @@ class User:
         self.__user_name = data.get("user_name", False)
         self.__email = data.get("email", False)
 
+    def __str__(self) -> str:
+        return str(self.__user_name)
+
     @property
-    def user_id(self):
+    def user_id(self) -> int:
         """The users ID.
         
         If you're using an oauth session, this is only accessible with the `user.read` scope.
@@ -14,7 +17,7 @@ class User:
         return self.__user_id
     
     @property
-    def userid(self):
+    def userid(self) -> int:
         """(An alias for the user_id property) 
         The users ID.
         
@@ -23,7 +26,7 @@ class User:
         return self.__user_id
 
     @property
-    def user_name(self):
+    def user_name(self) -> str:
         """The users name.
         
         If you're using an oauth session, this is only accessible with the `user.read` scope.
@@ -31,7 +34,7 @@ class User:
         return self.__user_name
 
     @property
-    def username(self):
+    def username(self) -> str:
         """(An alias for the user_name property)
         The users name.
         
@@ -40,7 +43,7 @@ class User:
         return self.__user_name
 
     @property
-    def email(self):
+    def email(self) -> str:
         """The users email.
         
         If you're using an oauth session, this is only accessible with the `user.email` scope.

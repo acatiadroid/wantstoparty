@@ -2,7 +2,7 @@ from typing import Union
 
 from .errors import MaxFileSizeExceeded
 
-def validate_file_extension(extension: str):
+def validate_file_extension(extension: str) -> bool:
     """Returns `True` if the file extension provided is allowed 
     on wants-to.party.
     
