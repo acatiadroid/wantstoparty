@@ -6,7 +6,7 @@
 
 from wantstoparty import WantsToParty, Size, MaxFileSizeExceeded
 
-wtp = WantsToParty(api_key="your api key", subdomain="your subdomain")
+wtp = WantsToParty("your api key")
 
 try:
     wtp.upload_from_file("cat.png", max_bytes=Size(mb=3)) # Alternately use the kb or b kwargs.

@@ -3,7 +3,7 @@ import io
 
 from wantstoparty._async import WantsToParty
 
-wtp = WantsToParty(api_key="your api key", subdomain="your subdomain")
+wtp = WantsToParty("your api key")
 
 # Upload using binary data
 my_html = io.BytesIO(b"<h1>Hello world</h1>")

@@ -33,7 +33,7 @@
     from wantstoparty import WantsToParty
 
     # For async use, refer to the examples.
-    wtp = WantsToParty(api_key="api key from dashboard", subdomain="subdomain from dashboard")
+    wtp = WantsToParty(api_key="api key from dashboard")
     ```
 
 

@@ -5,7 +5,7 @@ from discord.ext import commands
 from wantstoparty._async import WantsToParty, Size, MaxFileSizeExceeded
 
 bot = commands.Bot(command_prefix="???") # intents, etc not relevant for demo
-wtp = WantsToParty(api_key="your api key", subdomain="your subdomain")
+wtp = WantsToParty("your api key")
 
 @bot.command()
 async def upload(ctx: commands.Context):

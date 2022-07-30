@@ -1,7 +1,7 @@
 from wantstoparty import WantsToParty
 import io
 
-wtp = WantsToParty(api_key="your api key", subdomain="your subdomain")
+wtp = WantsToParty("your api key")
 
 # upload from local file on disk using path to file.
 file = wtp.upload_from_file("cat.png")
