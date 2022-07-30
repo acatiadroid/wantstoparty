@@ -76,3 +76,22 @@ class Size:
         if all_bytes > total_allowed_bytes: # file exceeded max allowed filesize
             self.exceeded = True
             raise MaxFileSizeExceeded("This file exceeded the maximum file size limit.")
+
+def _format_arguments(data: dict):
+    final = []
+
+    if data.get("max_length"):
+        final.append("max_length=" + data["max_length"])
+    
+    if data.get("custom_code"):
+        final.append("custom_code=" + data["custom_code"])
+    
+    if data.get("code_length"):
+        final.append("code_length=" + data["code_length"])
+    
+    if data.get("extension") != None:
+        final.append("extension=" + str(data["extension"]))
+    
+    arguments = "&".join(final)
+
+    return f"?{arguments}"

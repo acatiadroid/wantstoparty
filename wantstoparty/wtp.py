@@ -1,107 +1,70 @@
 import io
 import os
 import pathlib
-from typing import Union
 
-import requests
-
-from .checks import Size
-from .errors import _handle_errorcode
+from .objects import User
+from .utils import Size
+from .api import Request
 
 class WantsToParty:
-    """The base class used for all wants-to.party API interactions.
-    
-    Keyword arguments
-    -----------
-    api_key - Your API key. This can be found on your dashboard.
-
-    subdomain - Your unique subdomain. This can also be found on your dashboard.
-    """
+    """The base class for all wants-to.party API interactions."""
     def __init__(
-            self,
-            *,
-            api_key: str,
-            subdomain: str
-        ):
-        super().__init__()
-        self.api_key: str = api_key
-        self.subdomain: str = subdomain
-        
-        self._BASE: str = f"https://{subdomain}.wants-to.party/upload"
-    
-    def _post_file(
-            self,
-            file,
-            filetype: str,
-            *,
-            from_bytes: bool,
-            filename: str = None,
-            max_bytes: Size = None
-        ):
-        headers = {"key": self.api_key}
-        
-        if from_bytes:
-            if max_bytes:
-                max_bytes._check_bytes(file.getbuffer().nbytes)
+        self,
+        api_key: str
+    ):
+        self.data = {"key": api_key}
 
-            if not filetype.endswith("."):
-                filetype = "." + filetype
-
-            filename = f"file{filetype}"
-            
-            file = {"file": (filename, file.getvalue())}
-        else:
-            if max_bytes:
-                max_bytes._check_bytes(os.path.getsize(file))
-
-            file_data = open(file, "rb")
-            
-            file = {"file": (filename + filetype, file_data)}
-
-        resp = requests.post(
-            self._BASE,
-            headers=headers,
-            files=file
-        )
-        
-        payload = resp.json()
-
-        if resp.status_code != 200:
-            return _handle_errorcode(resp.status_code, payload["error"])
-        
-        return payload["url"]
-    
     def upload_from_bytes(
-            self, 
-            file: io.BufferedIOBase,
-            filetype: str,
-            *,
-            max_bytes: Size = None
-        ) -> str:
+        self,
+        file: io.BufferedIOBase,
+        filetype: str,
+        *,
+        max_bytes: Size = None,
+        code_length: int = None,
+        extension: bool = None,
+        custom_code: str = None
+    ) -> str:
         """Uploads a file-like object using the raw binary data
         provided.
-
         Returns the URL of the uploaded file.
-
+        
         Attributes
         -----------
-        file - The raw binary data associated with the file.
+        filepath - The raw binary data associated with the file.
                Using `io.BytesIO` is recommended.
             
         filetype - The file type associated with the file
                    you're uploading. I.E., ".png".
 
         max_bytes - A maximum number of bytes uploadable. Use
-        the Size class to specify the number of bytes. 
-        """
-        return self._post_file(file, filetype, from_bytes=True, max_bytes=max_bytes)
+                    the Size class to specify the number of bytes. 
+        
+        code_length - The length of the unique code to generate.
+                      Must be between 5 and 50 characters.
+
+        extension - If `False`, this will not append the file type
+                    at the end of the file.
+        
+        custom_code - The custom file name which will be displayed on
+                      wants-to.party.
+        """ 
+        return Request._post_from_bytes(
+            file,
+            filetype,
+            data=self.data,
+            url_args={"max_bytes": max_bytes, "code_length": code_length, "custom_code": custom_code, "extension": extension},
+            max_bytes=max_bytes
+        )
     
     def upload_from_file(
-            self,
-            file: str,
-            *,
-            max_bytes: Size = None
-        ) -> str:
+        self,
+        filepath: str,
+        *,
+        max_bytes: Size = None,
+        code_length: int = None,
+        extension: bool = None,
+        custom_code: str = None
+    ) -> str:
         """Uploads a local file using the file path provided.
         
         Returns the URL of the uploaded file.
@@ -109,14 +72,45 @@ class WantsToParty:
         Attributes
         -----------
         file - The path to the file stored on your local disk.
-
+        
         max_bytes - A maximum number of bytes uploadable. Use
         the Size class to specify the number of bytes. 
+        
+        code_length - The length of the unique code to generate.
+                      Must be between 5 and 50 characters.
+
+        extension - If `False`, this will not append the file type
+                    at the end of the file.
+        
+        custom_code - The custom file name which will be displayed on
+                      wants-to.party.
         """
-        fpath = pathlib.Path(file)
+        filedata = pathlib.Path(filepath)
         
-        filename = fpath.stem
-        filetype = fpath.suffix
-        path = os.path.abspath(file)
-        return self._post_file(path, filetype, filename=filename, from_bytes=False, max_bytes=max_bytes)
+        filetype = filedata.suffix
+        path = os.path.abspath(filepath)
         
+        return Request._post_from_file(
+            path,
+            filetype,
+            data=self.data,
+            url_args={"max_bytes": max_bytes, "code_length": code_length, "custom_code": custom_code, "extension": extension},
+            max_bytes=max_bytes
+        )
+    
+    def delete_file(self, file_id: str) -> bool:
+        """Deletes a file on wants-to.party with the given ID and filetype.
+        
+        NOTE: you MUST include the filetype! (I.E., ".mp3")"""
+        return Request._delete_file(file_id, data=self.data)
+
+    def get_files(self) -> list:
+        """Returns a list of file objects relating to your files on wants-to.party
+        or `None` if there's no files.
+        
+        As per a wants-to.party limitation, this only shows the first 1000 files."""
+        return Request._get_files(data=self.data)
+    
+    def get_user(self) -> User:
+        """Returns a user object of the user associated with the given API key."""
+        return Request._get_user(data=self.data)
