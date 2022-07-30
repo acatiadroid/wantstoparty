@@ -2,6 +2,8 @@
     <h1>wantstoparty</h1>
     <h3>An API wrapper for the <a href="https://wants-to.party">wants-to.party</a> API.</h3>
     <img src="https://img.shields.io/pypi/v/wantstoparty.svg">
+    <h3>V2 is out! Check out the changes <a href=".github/whats_new.md">here</a>.</h3>
+
 </div>
 
 ## About
