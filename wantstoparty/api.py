@@ -3,8 +3,8 @@ import requests
 from aiohttp import ClientSession, FormData
 
 from .errors import BadRequest, _handle_errorcode
-from .utils import Size, _format_arguments
-from .objects import File, User
+from .utils import _format_arguments
+from .objects import File, User, Size
 
 class URL:
     BASE = "https://wants-to.party"
@@ -135,6 +135,14 @@ class Request:
             return True
         
         raise BadRequest("That file does not exist.") # just gonna raise 400 even though its 404.
+    
+    def _get_file_hosted_size(file_id: str, subdomain: str):
+        url = f"https://{subdomain}.wants-to.party/{file_id}"
+
+        b = requests.get(url, stream=True).headers['Content-Length']
+
+        return Size(_total=b)
+
 
 class AsyncRequest:
     async def _post_from_file(

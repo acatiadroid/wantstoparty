@@ -2,23 +2,25 @@
     <h1>wantstoparty</h1>
     <h3>An API wrapper for the <a href="https://wants-to.party">wants-to.party</a> API.</h3>
     <img src="https://img.shields.io/pypi/v/wantstoparty.svg">
-    <h3>V2 is out! Check out the changes <a href="whats_new.md">here</a>.</h3>
-
 </div>
 
 ## About
-`wantstoparty` is a feature rich API wrapper for the wants-to.party API which offers:
-* Blocking and non-blocking (async) support. [See blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/nonasync_use.py)/[See non-blocking example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/async_use.py).
-* Upload files using raw binary data or a local file stored on disk. Look at the examples above.
-* Set a maximum upload file size.
-    - This prevents files that exceed your limit being uploaded. [See example](https://github.com/acatiadroid/wantstoparty/blob/main/examples/max_filesize.py).
-* Check if file types are supported on wants-to.party.
-* User-friendly errors.
-* ...and much more.
+**wantstoparty** is a feature-rich API wrapper for the [wants-to.party](https://wants-to.party) API which provides full API coverage, supporting blocking/non-blocking HTTP methods and much more.
+
+Notable features:
+* Blocking (sync) and non-blocking (async) support. [`blocking example`](https://github.com/acatiadroid/wantstoparty/blob/main/examples/nonasync_use.py) [`non-blocking example`](https://github.com/acatiadroid/wantstoparty/blob/main/examples/async_use.py)
+* Upload files by providing a local file path. (I.E, file stored on disk) or bytes-like file object. (see examples above)
+* Get all files hosted on your wants-to.party account.
+* Get account information associated with the given API key.
+* Delete files by their given file ID.
+* Set a maximum uploadable file size limit.
+    - Prevents files that exceed your specified limit being upload. [`see example`](https://github.com/acatiadroid/wantstoparty/blob/main/examples/max_filesize.py)
+* Validation for unsupported file types.
+* User-friendly errors for handling status codes of failed HTTP requests.
 
 **Created by acatia#5378**
 
-## Getting started
+## Installation & Setup
 1. Install the package:
     ```
     pip install wantstoparty
