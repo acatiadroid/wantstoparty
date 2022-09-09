@@ -1,5 +1,12 @@
 # What's new
 
+## V2.0.1 - V2.0.3 (9 September 2022)
+* Added `get_size()`/`async_get_size()` (sync & async) methods to `File` object.
+* Renamed `Size` class to `SizeLimit` (used in setting max bytes)
+* Added `FileSize` class which is returned when calling the get_size methods.
+    - These classes act as a blueprint to the filesize and give you more information than just the sum total bytes (I.E., units like MB andKB.)
+* Improved README.
+
 ## V2 (30 July 2022)
 * Added API coverage for `api/user/files` (`GET`, `POST`, `DELETE`) & `api/user` (`GET`) endpoints:
     - `get_user()`
