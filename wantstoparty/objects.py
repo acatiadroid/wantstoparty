@@ -91,13 +91,16 @@ class FileSize:
         b = 0
 
         while temp > 0:
-            if temp >= self.MBSIZE:
-                mb = temp - self.MBSIZE
-            elif temp >= self.KBSIZE:
-                kb = temp - self.KBSIZE
+            if temp >= 1048576:
+                mb += 1
+                temp = temp - 1048576
+            elif temp >= 1024:
+                kb += 1
+                temp = temp - 1024
             else:
                 b = temp
-        
+                temp = 0
+            
         return {"mb": mb, "kb": kb, "b": b}
 
 
