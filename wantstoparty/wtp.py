@@ -3,7 +3,7 @@ import os
 import pathlib
 
 from .objects import User, FileSize
-from .api import Request
+from .http import Request
 
 class WantsToParty:
     """The base class for all wants-to.party API interactions."""
