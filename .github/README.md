@@ -14,7 +14,7 @@ Notable features:
 * Get account information associated with the given API key.
 * Delete files by their given file ID.
 * Set a maximum uploadable file size limit.
-    - Prevents files that exceed your specified limit being upload. [`see example`](https://github.com/acatiadroid/wantstoparty/blob/main/examples/max_filesize.py)
+    - Prevents files that exceed your specified limit being uploaded. [`see example`](https://github.com/acatiadroid/wantstoparty/blob/main/examples/max_filesize.py)
 * Validation for unsupported file types.
 * User-friendly errors for handling status codes of failed HTTP requests.
 
@@ -35,7 +35,7 @@ Notable features:
     from wantstoparty import WantsToParty
 
     # For async use, refer to the examples.
-    wtp = WantsToParty(api_key="api key from dashboard")
+    wtp = WantsToParty("api key from dashboard")
     ```
 
 
