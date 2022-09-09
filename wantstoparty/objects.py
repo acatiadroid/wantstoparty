@@ -54,7 +54,7 @@ class FileSize:
         self._total = _total
     
     def __str__(self) -> str:
-        count = self.formatted_bytes()
+        count = self.formatted_bytes
         fmt = f"{count['mb']}MB, {count['kb']}KB, {count['b']}B"
         return str(fmt)
 
