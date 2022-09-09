@@ -1,6 +1,6 @@
 # What's new
 
-## V2.0.1 - V2.0.3 (9 September 2022)
+## V2.0.1 - V2.1.0 (9 September 2022)
 * Added `get_size()`/`async_get_size()` (sync & async) methods to `File` object.
 * Renamed `Size` class to `SizeLimit` (used in setting max bytes)
 * Added `FileSize` class which is returned when calling the get_size methods.
