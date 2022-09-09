@@ -4,7 +4,7 @@ from aiohttp import ClientSession, FormData
 
 from .errors import BadRequest, _handle_errorcode
 from .utils import _format_arguments
-from .objects import File, User, Size
+from .objects import File, SizeLimit, User
 
 class URL:
     BASE = "https://wants-to.party"
@@ -24,7 +24,7 @@ class Request:
         *,
         data: dict,
         url_args: dict = None,
-        max_bytes: Size = None
+        max_bytes: SizeLimit = None
     ):
         key = data.get("key")
         headers = {"Authorization": f"User {key}"}
@@ -54,7 +54,7 @@ class Request:
         *,
         data: dict,
         url_args: dict = None,
-        max_bytes: Size = None
+        max_bytes: SizeLimit = None
     ):
         key = data.get("key")
         headers = {"Authorization": f"User {key}"}
@@ -135,14 +135,6 @@ class Request:
             return True
         
         raise BadRequest("That file does not exist.") # just gonna raise 400 even though its 404.
-    
-    def _get_file_hosted_size(file_id: str, subdomain: str):
-        url = f"https://{subdomain}.wants-to.party/{file_id}"
-
-        b = requests.get(url, stream=True).headers['Content-Length']
-
-        return Size(_total=b)
-
 
 class AsyncRequest:
     async def _post_from_file(
@@ -151,7 +143,7 @@ class AsyncRequest:
         *,
         data: dict,
         url_args: dict = None,
-        max_bytes: Size = None
+        max_bytes: SizeLimit = None
     ):
         key = data.get("key")
         headers = {"Authorization": f"User {key}"}
@@ -177,7 +169,7 @@ class AsyncRequest:
         *,
         data: dict,
         url_args: dict = None,
-        max_bytes: Size = None
+        max_bytes: SizeLimit = None
     ):
         key = data.get("key")
         headers = {"Authorization": f"User {key}"}
@@ -243,4 +235,3 @@ class AsyncRequest:
                 return _handle_errorcode(resp.status, payload["message"])
         
             return True
-    
