@@ -2,8 +2,7 @@ import io
 import os
 import pathlib
 
-from ..objects import User
-from ..utils import Size
+from ..objects import User, FileSize
 from ..api import AsyncRequest
 
 class WantsToParty:
@@ -19,7 +18,7 @@ class WantsToParty:
         file: io.BufferedIOBase,
         filetype: str,
         *,
-        max_bytes: Size = None,
+        max_bytes: FileSize = None,
         code_length: int = None,
         extension: bool = None,
         custom_code: str = None
@@ -60,7 +59,7 @@ class WantsToParty:
         self,
         filepath: str,
         *,
-        max_bytes: Size = None,
+        max_bytes: FileSize = None,
         code_length: int = None,
         extension: bool = None,
         custom_code: str = None
