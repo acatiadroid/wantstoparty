@@ -199,7 +199,7 @@ class File:
         """
         url = f"https://{subdomain}.wants-to.party/{file_id}"
 
-        bcount = len(requests.get(url, stream=True).headers['Content-Length'])
+        bcount = requests.get(url, stream=True).headers['Content-Length']
 
         return FileSize(bcount)
     
